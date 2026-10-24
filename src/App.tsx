@@ -110,14 +110,14 @@ export default function App() {
       'not-found': 'The page you requested could not be found.',
     };
 
-    document.title = pageTitles[route.page];
+    document.title = pageTitles[page];
     let description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
     if (!description) {
       description = document.createElement('meta');
       description.name = 'description';
       document.head.append(description);
     }
-    description.content = descriptions[route.page];
+    description.content = descriptions[page];
   }, [page, pathname, service]);
 
   return (

@@ -213,7 +213,7 @@ export default function Contact() {
                 Send Us a Message
               </h3>
               <p className="mt-1 text-sm text-charcoal-500">
-                Fill in the form below and we'll get back to you.
+                Fill in the form to prepare an inquiry in your email app.
               </p>
 
               <div className="mt-6 space-y-5">
