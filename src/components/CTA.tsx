@@ -5,11 +5,6 @@ import { useScrollReveal } from '@/hooks/useScroll';
 export default function CTA() {
   const { ref, isVisible } = useScrollReveal<HTMLDivElement>();
 
-  const scrollToContact = () => {
-    const el = document.querySelector('#contact');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
   const whatsappUrl = `https://wa.me/${siteConfig.phoneRaw}?text=${encodeURIComponent(
     "Hello S.M Kitchen Interior, I'd like to get a free consultation for my interior project."
   )}`;
@@ -48,13 +43,13 @@ export default function CTA() {
               <Phone className="h-4 w-4" />
               Call Now
             </a>
-            <button
-              onClick={scrollToContact}
+            <a
+              href="/contact"
               className="inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-gold-500 to-gold-700 px-7 py-3.5 text-sm font-semibold text-charcoal-950 shadow-gold transition-all duration-300 hover:scale-105"
             >
               <Calendar className="h-4 w-4" />
               Get Free Consultation
-            </button>
+            </a>
             <a
               href={whatsappUrl}
               target="_blank"

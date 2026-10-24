@@ -5,8 +5,6 @@ import {
   MapPin,
   User,
   Send,
-  Loader2,
-  CheckCircle2,
   AlertCircle,
   MessageCircle,
 } from 'lucide-react';
@@ -35,7 +33,7 @@ export default function Contact() {
   const { ref, isVisible } = useScrollReveal<HTMLDivElement>();
   const [form, setForm] = useState<FormState>(initialForm);
   const [errors, setErrors] = useState<FormErrors>({});
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'email'>('idle');
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
@@ -74,14 +72,21 @@ export default function Contact() {
     }
   };
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
-    setStatus('loading');
-    setStatus('success');
-    setForm(initialForm);
-    setTimeout(() => setStatus('idle'), 5000);
+    const body = [
+      `Name: ${form.name}`,
+      `Phone: ${form.phone}`,
+      `Email: ${form.email || 'Not provided'}`,
+      `Service: ${form.service}`,
+      `Message: ${form.message || 'Not provided'}`,
+    ].join('\n');
+    window.location.href = `mailto:${siteConfig.email}?subject=${encodeURIComponent(
+      `Website inquiry: ${form.service}`
+    )}&body=${encodeURIComponent(body)}`;
+    setStatus('email');
   };
 
   const whatsappUrl = `https://wa.me/${siteConfig.phoneRaw}?text=${encodeURIComponent(
@@ -343,33 +348,18 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  disabled={status === 'loading'}
                   className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-wine-700 to-wine-900 px-6 py-3.5 text-sm font-semibold text-cream-50 shadow-premium transition-all duration-300 hover:scale-[1.02] hover:shadow-luxury disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  {status === 'loading' ? (
-                    <>
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <Send className="h-4 w-4" />
-                      Submit Inquiry
-                    </>
-                  )}
+                  <Send className="h-4 w-4" />
+                  Prepare Email Inquiry
                 </button>
 
-                {status === 'success' && (
-                  <div className="flex items-center gap-2 rounded-lg bg-green-50 px-4 py-3 text-sm text-green-700">
-                    <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
-                    Thank you! We'll get back to you soon.
-                  </div>
-                )}
-
-                {status === 'error' && (
-                  <div className="flex items-center gap-2 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">
-                    <AlertCircle className="h-5 w-5 flex-shrink-0" />
-                    Something went wrong. Please try calling us at {siteConfig.phone}.
+                {status === 'email' && (
+                  <div className="flex items-start gap-2 rounded-lg bg-gold-50 px-4 py-3 text-sm text-charcoal-700">
+                    <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-gold-700" />
+                    Your email app should open with the inquiry ready to send. The message is
+                    not sent until you send it from that app. If it does not open, contact us
+                    at {siteConfig.email}.
                   </div>
                 )}
               </div>

@@ -1,24 +1,20 @@
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { navLinks, siteConfig } from '@/data/siteData';
+import logo from '@/assets/logo.png';
+import { navLinks } from '@/data/siteData';
 import { useActiveSection, useScrollPosition } from '@/hooks/useScroll';
 
-const sectionIds = navLinks.map((l) => l.href.replace('#', ''));
-const hiddenHeaderLinks = new Set(['#portfolio', '#why-us', '#testimonials']);
+const sectionIds = ['home', 'about', 'services', 'contact'];
 
-export default function Navbar() {
+type NavbarProps = {
+  pathname: string;
+};
+
+export default function Navbar({ pathname }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [pathname, setPathname] = useState(() => window.location.pathname);
-  const isHomepage = pathname === '/';
   const scrolled = useScrollPosition();
   const activeSection = useActiveSection(sectionIds);
-  const visibleNavLinks = navLinks.filter((link) => !hiddenHeaderLinks.has(link.href));
-
-  useEffect(() => {
-    const handlePathChange = () => setPathname(window.location.pathname);
-    window.addEventListener('popstate', handlePathChange);
-    return () => window.removeEventListener('popstate', handlePathChange);
-  }, []);
+  const visibleNavLinks = navLinks;
 
   useEffect(() => {
     if (mobileOpen) {
@@ -31,17 +27,6 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
-  const handleNavClick = (href: string) => {
-    setMobileOpen(false);
-    if (!isHomepage) return;
-
-    const hash = href.slice(href.indexOf('#'));
-    const el = document.querySelector(hash);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const getLinkHref = (href: string) => `/${href}`;
-
   return (
     <>
       <header
@@ -53,42 +38,29 @@ export default function Navbar() {
       >
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 lg:px-8">
           <a
-            href={getLinkHref('#home')}
-            onClick={(e) => {
-              if (isHomepage) {
-                e.preventDefault();
-                handleNavClick(getLinkHref('#home'));
-              }
-            }}
+            href="/#home"
+            onClick={() => setMobileOpen(false)}
             className="flex items-center gap-2 transition-opacity hover:opacity-90"
             aria-label="S.M Kitchen Interior home"
           >
-            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-wine-700 to-wine-900 font-serif text-lg font-bold text-gold-300 shadow-gold">
-              SM
-            </span>
-            <span className="flex flex-col leading-tight">
-              <span className="font-serif text-base font-bold tracking-wide text-cream-100 sm:text-lg">
-                S.M Kitchen Interior
-              </span>
-              <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-gold-400">
-                {siteConfig.tagline}
-              </span>
-            </span>
+            <img
+              src={logo}
+              alt="S.M Kitchen Interior"
+              className="h-14 w-20 object-contain sm:h-16 sm:w-24"
+            />
           </a>
 
           <ul className="hidden items-center gap-1 lg:flex">
             {visibleNavLinks.map((link) => {
-              const isActive = activeSection === link.href.replace('#', '');
+              const sectionId = link.href === '/' ? 'home' : link.href.slice(1);
+              const isActive =
+                (pathname === '/' && activeSection === sectionId) ||
+                pathname === link.href ||
+                (pathname.startsWith('/services/') && link.href === '/services');
               return (
                 <li key={link.href}>
                   <a
-                    href={getLinkHref(link.href)}
-                    onClick={(e) => {
-                      if (isHomepage) {
-                        e.preventDefault();
-                        handleNavClick(getLinkHref(link.href));
-                      }
-                    }}
+                    href={link.href}
                     className={`relative rounded-md px-3 py-2 text-sm font-medium transition-colors duration-300 ${
                       isActive
                         ? 'text-gold-400'
@@ -109,13 +81,7 @@ export default function Navbar() {
 
           <div className="hidden items-center gap-3 lg:flex">
             <a
-              href={getLinkHref('#contact')}
-              onClick={(e) => {
-                if (isHomepage) {
-                  e.preventDefault();
-                  handleNavClick(getLinkHref('#contact'));
-                }
-              }}
+              href="/contact"
               className="rounded-full bg-gradient-to-r from-gold-500 to-gold-700 px-5 py-2.5 text-sm font-semibold text-charcoal-950 shadow-gold transition-all duration-300 hover:scale-105 hover:shadow-lg"
             >
               Get Free Consultation
@@ -153,17 +119,16 @@ export default function Navbar() {
           <div className="flex h-full flex-col overflow-y-auto px-6 py-24">
             <ul className="flex flex-col gap-1">
               {visibleNavLinks.map((link) => {
-                const isActive = activeSection === link.href.replace('#', '');
+                const sectionId = link.href === '/' ? 'home' : link.href.slice(1);
+                const isActive =
+                  (pathname === '/' && activeSection === sectionId) ||
+                  pathname === link.href ||
+                  (pathname.startsWith('/services/') && link.href === '/services');
                 return (
                   <li key={link.href}>
                     <a
-                      href={getLinkHref(link.href)}
-                      onClick={(e) => {
-                        if (isHomepage) {
-                          e.preventDefault();
-                          handleNavClick(getLinkHref(link.href));
-                        }
-                      }}
+                      href={link.href}
+                      onClick={() => setMobileOpen(false)}
                       className={`block rounded-lg px-4 py-3 text-base font-medium transition-colors ${
                         isActive
                           ? 'bg-wine-800/40 text-gold-400'
@@ -177,13 +142,8 @@ export default function Navbar() {
               })}
             </ul>
             <a
-              href={getLinkHref('#contact')}
-              onClick={(e) => {
-                if (isHomepage) {
-                  e.preventDefault();
-                  handleNavClick(getLinkHref('#contact'));
-                }
-              }}
+              href="/contact"
+              onClick={() => setMobileOpen(false)}
               className="mt-6 rounded-full bg-gradient-to-r from-gold-500 to-gold-700 px-5 py-3 text-center text-sm font-semibold text-charcoal-950 shadow-gold transition-transform hover:scale-105"
             >
               Get Free Consultation

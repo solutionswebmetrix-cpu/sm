@@ -1,12 +1,8 @@
-import { Phone, Mail, MapPin, ArrowUp } from 'lucide-react';
-import { siteConfig, navLinks, services } from '@/data/siteData';
+import { Phone, Mail, MapPin, ArrowUp, Instagram, Youtube } from 'lucide-react';
+import logo from '@/assets/logo.png';
+import { siteConfig, navLinks, allServices, serviceSlugs } from '@/data/siteData';
 
 export default function Footer() {
-  const scrollTo = (href: string) => {
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
   const year = new Date().getFullYear();
 
   return (
@@ -17,17 +13,11 @@ export default function Footer() {
         <div className="grid gap-10 lg:grid-cols-4">
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2">
-              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-wine-700 to-wine-900 font-serif text-lg font-bold text-gold-300">
-                SM
-              </span>
-              <span className="flex flex-col leading-tight">
-                <span className="font-serif text-base font-bold tracking-wide text-cream-100">
-                  S.M Kitchen Interior
-                </span>
-                <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-gold-400">
-                  {siteConfig.tagline}
-                </span>
-              </span>
+              <img
+                src={logo}
+                alt="S.M Kitchen Interior"
+                className="h-16 w-24 object-contain"
+              />
             </div>
             <p className="mt-5 text-sm leading-relaxed text-cream-100/50">
               Professional interior designing and modular furniture solutions serving Farmana,
@@ -44,10 +34,6 @@ export default function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollTo(link.href);
-                    }}
                     className="text-sm text-cream-100/60 transition-colors hover:text-gold-400"
                   >
                     {link.label}
@@ -62,14 +48,14 @@ export default function Footer() {
               Services
             </h4>
             <ul className="mt-5 space-y-3">
-              {services.map((service) => (
+              {allServices.map((service) => (
                 <li key={service.id}>
-                  <button
-                    onClick={() => scrollTo('#services')}
-                    className="text-left text-sm text-cream-100/60 transition-colors hover:text-gold-400"
+                  <a
+                    href={`/services/${serviceSlugs[service.id]}`}
+                    className="text-sm text-cream-100/60 transition-colors hover:text-gold-400"
                   >
                     {service.title}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -103,6 +89,26 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
+            <div className="mt-5 flex items-center gap-4">
+              <a
+                href="https://www.instagram.com/smkitchensinteriors?utm_source=qr&stkn=MTc0Zmt3cGhudTJieA=="
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="text-cream-100/60 transition-colors hover:text-gold-400"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.youtube.com/@sundermodulerfurnicher"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+                className="text-cream-100/60 transition-colors hover:text-gold-400"
+              >
+                <Youtube className="h-5 w-5" />
+              </a>
+            </div>
           </div>
         </div>
 

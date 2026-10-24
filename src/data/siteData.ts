@@ -15,13 +15,10 @@ export const siteConfig = {
 };
 
 export const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Our Work', href: '#portfolio' },
-  { label: 'Why Choose Us', href: '#why-us' },
-  { label: 'Testimonials', href: '#testimonials' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Services', href: '/services' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export type ServiceItem = {
@@ -88,6 +85,159 @@ export const services: ServiceItem[] = [
     alt: 'Complete home interior designing project in Sonipat with cohesive styling',
   },
 ];
+
+export const customizedFurnitureService: ServiceItem = {
+  id: 'customized-furniture',
+  title: 'Customized Furniture & Interior Solutions',
+  description:
+    'Customized furniture and interior solutions planned around your space, preferences and requirements.',
+  image:
+    'https://images.pexels.com/photos/7018836/pexels-photo-7018836.jpeg?auto=compress&cs=tinysrgb&w=940',
+  alt: 'Customized home interior solutions by S.M Kitchen Interior',
+};
+
+export const allServices = [...services, customizedFurnitureService];
+
+export const serviceSlugs: Record<string, string> = {
+  'modular-kitchen': 'modular-kitchen-design',
+  'modular-wardrobe': 'modular-wardrobe-design',
+  'lcd-tv-panel': 'tv-panel-design',
+  'modular-bed': 'modular-bed-design',
+  'flush-door': 'flush-door-design',
+  'complete-interior': 'complete-interior-design',
+  'customized-furniture': 'customized-furniture-interior-solutions',
+};
+
+export const servicePageDetails: Record<
+  string,
+  {
+    overview: string;
+    features: string[];
+    designOptions: string[];
+    materials: string;
+    faq: { question: string; answer: string };
+  }
+> = {
+  'modular-kitchen': {
+    overview:
+      'A well-planned modular kitchen brings preparation, cooking and storage together in a layout tailored to your room. We discuss how you use the space and shape the design around your requirements.',
+    features: [
+      'Layout planned around the available room and workflow',
+      'Storage arranged for everyday kitchen essentials',
+      'Color and finish choices coordinated with your home',
+    ],
+    designOptions: ['L-shaped', 'U-shaped', 'Parallel', 'Straight-line'],
+    materials:
+      'Cabinet materials, countertop choices, hardware and finishes can be discussed during planning and selected to suit your needs and budget.',
+    faq: {
+      question: 'Can the kitchen layout be customized for my room?',
+      answer:
+        'Yes. The layout is planned around your room dimensions, storage needs and the way you use your kitchen.',
+    },
+  },
+  'modular-wardrobe': {
+    overview:
+      'A modular wardrobe can make bedroom storage easier to organize while complementing the room. We plan the configuration, internal storage and exterior finish around your available space.',
+    features: [
+      'Storage configuration based on your belongings',
+      'Space-conscious layouts for the room',
+      'Exterior finishes selected to suit your interior',
+    ],
+    designOptions: ['Sliding-door', 'Hinged-door', 'Full-height', 'Mirrored-front'],
+    materials:
+      'Panel options, hardware, door styles and surface finishes are selected with you as part of the design and quotation.',
+    faq: {
+      question: 'Can the wardrobe interior be arranged to my needs?',
+      answer:
+        'Yes. Shelves, hanging space and other storage areas can be planned around the way you want to organize your belongings.',
+    },
+  },
+  'lcd-tv-panel': {
+    overview:
+      'A TV panel creates a considered focal point for a living room while giving cables and media equipment a planned place. The design is adapted to the wall and the rest of your room.',
+    features: [
+      'Panel proportions planned for the wall and screen',
+      'Options for practical media storage',
+      'Finishes coordinated with the living space',
+    ],
+    designOptions: ['Minimal wall panel', 'Storage-integrated unit', 'Wood-accent panel'],
+    materials:
+      'Panel surfaces, colors, textures and storage details can be reviewed and finalized to complement your room.',
+    faq: {
+      question: 'Can a TV panel include storage?',
+      answer:
+        'Storage can be incorporated into the design where the wall and your requirements allow.',
+    },
+  },
+  'modular-bed': {
+    overview:
+      'A modular bed is planned to suit the bedroom layout and the way you use the space. Headboard style, proportions and practical storage can be discussed as part of the design.',
+    features: [
+      'Sizing and placement considered for the bedroom',
+      'Headboard style coordinated with the interior',
+      'Optional storage planned around your requirements',
+    ],
+    designOptions: ['Upholstered headboard', 'Panel headboard', 'Storage bed'],
+    materials:
+      'Upholstery, panel finishes, colors and hardware choices are finalized during consultation.',
+    faq: {
+      question: 'Can bed storage be included?',
+      answer:
+        'Storage options can be discussed and included when suitable for your room and preferred bed design.',
+    },
+  },
+  'flush-door': {
+    overview:
+      'Flush doors provide a clean, simple finish that can be coordinated with the surrounding interior. We help consider the door style and finish in context with the space.',
+    features: [
+      'Simple profiles that suit a range of interiors',
+      'Finish choices coordinated with nearby surfaces',
+      'Door selection considered as part of the overall design',
+    ],
+    designOptions: ['Plain finish', 'Wood-look finish', 'Coordinated color finish'],
+    materials:
+      'Available door construction, surface finishes and hardware should be confirmed during consultation based on the project requirements.',
+    faq: {
+      question: 'Can the door finish match my interior?',
+      answer:
+        'Finish options can be discussed to coordinate the door with the colors and materials used in your space.',
+    },
+  },
+  'complete-interior': {
+    overview:
+      'Complete interior designing brings the rooms and key design choices of a home together. We work through your requirements and coordinate the spaces into a coherent, practical interior.',
+    features: [
+      'A connected design direction across selected rooms',
+      'Planning based on your lifestyle and space',
+      'Furniture and finish choices considered together',
+    ],
+    designOptions: ['Room-by-room planning', 'Coordinated home interiors', 'Customized furniture'],
+    materials:
+      'Furniture, surface finishes and other selections are discussed and agreed for each part of the project.',
+    faq: {
+      question: 'Can I discuss only selected rooms?',
+      answer:
+        'Yes. You can discuss the rooms and scope you have in mind during the initial consultation.',
+    },
+  },
+  'customized-furniture': {
+    overview:
+      'Customized furniture and interior solutions are shaped around a particular space or requirement. We discuss the intended use, dimensions and preferred look before proposing a suitable direction.',
+    features: [
+      'Designed around your specific space and use',
+      'Dimensions and storage planned for the requirement',
+      'Styles and finishes considered with your existing interior',
+    ],
+    designOptions: ['Made-to-fit storage', 'Customized furniture', 'Coordinated interior elements'],
+    materials:
+      'Construction and finish choices depend on the furniture or interior element; options are reviewed with you before finalizing.',
+    faq: {
+      question: 'Can I ask about a custom furniture requirement?',
+      answer:
+        'Yes. Share the space, intended use and approximate dimensions so the requirement can be discussed.',
+    },
+  },
+};
 
 export type PortfolioCategory =
   | 'All'

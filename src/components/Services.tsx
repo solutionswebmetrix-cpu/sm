@@ -1,14 +1,9 @@
 import { ArrowRight } from 'lucide-react';
-import { services } from '@/data/siteData';
+import { services, serviceSlugs } from '@/data/siteData';
 import { useScrollReveal } from '@/hooks/useScroll';
 
 export default function Services() {
   const { ref, isVisible } = useScrollReveal<HTMLDivElement>();
-
-  const scrollToContact = () => {
-    const el = document.querySelector('#contact');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
 
   return (
     <section id="services" className="relative overflow-hidden bg-charcoal-950 py-24 lg:py-32 bg-grain">
@@ -53,13 +48,13 @@ export default function Services() {
                 <p className="text-sm leading-relaxed text-cream-100/70">
                   {service.description}
                 </p>
-                <button
-                  onClick={scrollToContact}
+                <a
+                  href={`/services/${serviceSlugs[service.id]}`}
                   className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-gold-400 transition-colors hover:text-gold-300"
                 >
-                  Explore Service
+                  View Details
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </button>
+                </a>
               </div>
               <div className="absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-gradient-to-r from-gold-500 to-gold-700 transition-transform duration-500 group-hover:scale-x-100" />
             </article>
