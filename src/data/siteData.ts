@@ -1,3 +1,5 @@
+import lcdTvPanelImage from '@/assets/LCD  TV Panel.jpeg';
+
 export const siteConfig = {
   name: 'S.M Kitchen Interior',
   tagline: 'Your Vision, Our Dream',
@@ -53,8 +55,7 @@ export const services: ServiceItem[] = [
     title: 'LCD / TV Panel',
     description:
       'Contemporary TV and LCD panel designs that create a sophisticated focal point for your living space.',
-    image:
-      'https://images.pexels.com/photos/6585766/pexels-photo-6585766.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    image: lcdTvPanelImage,
     alt: 'Modern LCD TV panel wall design in Sonipat with wooden accents',
   },
   {
