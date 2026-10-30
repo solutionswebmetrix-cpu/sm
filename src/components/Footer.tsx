@@ -89,13 +89,13 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
-            <div className="mt-5 flex items-center gap-4">
+            <div className="mt-5 flex items-center gap-3">
               <a
                 href="https://www.instagram.com/smkitchensinteriors?utm_source=qr&stkn=MTc0Zmt3cGhudTJieA=="
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="text-cream-100/60 transition-colors hover:text-gold-400"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-tr from-fuchsia-600 via-pink-500 to-amber-400 text-white shadow-[0_0_16px_rgba(236,72,153,0.28)] transition-transform duration-300 hover:scale-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-400"
               >
                 <Instagram className="h-5 w-5" />
               </a>
@@ -104,7 +104,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube"
-                className="text-cream-100/60 transition-colors hover:text-gold-400"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-red-500/15 text-red-500 shadow-[0_0_16px_rgba(239,68,68,0.22)] transition-transform duration-300 hover:scale-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400"
               >
                 <Youtube className="h-5 w-5" />
               </a>

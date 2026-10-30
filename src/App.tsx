@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
+import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import HomePage from '@/pages/HomePage';
 import AboutPage from '@/pages/AboutPage';
 import ServicesPage from '@/pages/ServicesPage';
@@ -149,6 +150,7 @@ export default function App() {
         )}
       </main>
       <Footer />
+      <FloatingWhatsApp />
       <BackToTop />
     </>
   );
