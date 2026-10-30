@@ -1,8 +1,20 @@
-import { Instagram, Youtube } from 'lucide-react';
+import { Facebook, Instagram, Youtube } from 'lucide-react';
 
 export default function FloatingSocialButtons() {
   return (
     <>
+      <a
+        href="https://www.facebook.com/profile.php?id=61596026402026"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Follow us on Facebook"
+        className="group fixed bottom-[19.5rem] right-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#1877F2] text-white shadow-lg shadow-blue-900/30 transition-transform duration-300 hover:scale-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-400 sm:right-6"
+      >
+        <Facebook aria-hidden="true" className="h-8 w-8" />
+        <span className="pointer-events-none absolute right-16 whitespace-nowrap rounded-md bg-charcoal-900 px-3 py-2 text-xs font-medium text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
+          Follow us on Facebook
+        </span>
+      </a>
       <a
         href="https://www.instagram.com/smkitchensinteriors?utm_source=qr&stkn=MTc0Zmt3cGhudTJieA=="
         target="_blank"
