@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
+import FloatingSocialButtons from '@/components/FloatingSocialButtons';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import HomePage from '@/pages/HomePage';
 import AboutPage from '@/pages/AboutPage';
@@ -150,6 +151,7 @@ export default function App() {
         )}
       </main>
       <Footer />
+      <FloatingSocialButtons />
       <FloatingWhatsApp />
       <BackToTop />
     </>
